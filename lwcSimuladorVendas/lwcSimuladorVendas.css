@@ -1,0 +1,58 @@
+/*Aqui faz parte do meu header para deixar com cara Meu Carrinho*/
+.header-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #FF9E01;
+    padding: 5px;
+}
+
+.header-image {
+    margin-right: 10px;
+    margin-left: 30px;
+}
+
+.header-image img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.titulo{
+    color: #FFFFFF;
+    font-size: larger;
+}/*Fim do meu header*/
+/*Botão Começo*/
+.botao{
+    text-align: center;
+    background-color: #FF9E01;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+/*Aqui vou brincar com a amostra da simulação*/
+thead{
+    background-color: #CFF1FD;
+    font-size: medium;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+}
+/*header da Simulação Azul do Meu Carrinho*/
+.header-table{
+    display: flex;
+    align-items: center;
+    background-color: #CFF1FD;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.titulo1{
+    color: black;
+    font-size: larger;
+}
+
+tfoot{
+    background-color: #CFF1FD;
+    font-size: medium;
+    margin: 0 auto;
+    padding: 10px;
+}

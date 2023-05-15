@@ -1,0 +1,65 @@
+<template>
+    <lightning-card>
+        <div class="header-wrapper">
+            <div class="header-image">
+                <img src={imgCarrinho}></img>
+            </div>
+            <header class="titulo"><strong>Meu Carrinho - Simular Compra Cliente</strong></header>
+        </div>
+        <div class="slds-m-around_medium">
+            <!--Campo para selecionar o registro requerido foi usado um combobox para acessar todos os produtos do obj Product2-->
+            <lightning-combobox label="Produto" placeholder="Selecione o Produto" options={productOptions}
+                value={selecionaIdProduto} onchange={handleProdutosApex}></lightning-combobox>
+            <!--Colocar um input que vai receber o valor dependendo do registro selecionado está desabilitado pois é um valor que vem da query-->
+            <lightning-input label="Preço" type="number" value={selectedProduct.Preco__c} disabled id="preco"></lightning-input>
+            <!--Adicionar um novo campo para entrada de quantidade-->
+            <lightning-input label="Quantidade" type="number" value={produtoQuantidade}
+                onchange={handleQuantidade}></lightning-input>
+            <!--Adicionar um novo campo desabilitado para exibir o total do produto Está desabilitado pois a função que tras o resultado-->
+            <lightning-input label="Total Produto" type="number" value={productTotal} disabled></lightning-input>
+            <div class="botao">
+                <!--Botão para adicionar o produto selecionado vai adicionar o item para a table de simulação-->
+                <lightning-button label="Adicionar Produto" onclick={handleAddSimulacao} variant="brand"></lightning-button>&nbsp;&nbsp;&nbsp;
+                <!--Botão para remover o último produto adicionado só consegui adicionar o ultimo item selecionado-->
+                <lightning-button label="Remover Último" onclick={handleDeletaItem} variant="brand"></lightning-button>
+            </div>
+            <!--Começo da Simulação vou usar um if para determinar que vai aparecer caso incluir item ao carrinho-->
+            <template if:true={itenscarrinho.length}><!--Só vai aparece se for adicionado itens ao carrinho-->
+                <div class="header-table">
+                    <div class="header-image">
+                        <img src={imgCarrinho}></img>
+                    </div>
+                    <header class="titulo1"><strong>Simulação Adicione ao Carrinho</strong></header>
+                </div>
+                <table>
+                    <thead><!--Cabeçalho do Simulador pensei em forma de tabela para deixar mais organizado-->
+                        <tr>
+                            <th>Nome do Produto</th>
+                            <th>Preço</th>
+                            <th>Quant</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={itenscarrinho}
+                            for:item="item"><!--Vai ser uma lista com os itens que vão sendo adicionados com o botão-->
+                            <tr key={item.Id}><!--Cada linha pega o indice do item adicionado-->
+                                <td>{item.Nome}</td>
+                                <td>{item.Preco}</td>
+                                <td>{item.Quantidade}</td>
+                                <td>{item.Total}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                    <tfoot>
+                        <tr><!--Qui que vai sair o total coloquei um colspan para ocupar o lugar de 3 colunas-->
+                            <td colspan="2"><b>Total:</b></td>
+                            <td colspan="2"><b>{carrinhoTotal}</b></td>
+                            <!--Função que vai trazer o total de todos os itens adicionados no array CART-->
+                        </tr>
+                    </tfoot>
+                </table>
+            </template>
+        </div>
+    </lightning-card>
+</template>
